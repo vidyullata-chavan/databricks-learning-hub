@@ -1,0 +1,166 @@
+{
+  "datasets": [
+    {
+      "name": "0021b933",
+      "displayName": "Trip Records Data Overview",
+      "queryLines": [
+        "select * from triptable;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "12a15ad0",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "70477442",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "0021b933",
+                  "fields": [
+                    {
+                      "name": "StartStation",
+                      "expression": "`StartStation`"
+                    },
+                    {
+                      "name": "countdistinct(Duration)",
+                      "expression": "COUNT(DISTINCT `Duration`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": false,
+                "showDescription": false
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "StartStation",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "countdistinct(Duration)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "StartStation",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 5,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "9ecfeba8",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "0021b933",
+                  "fields": [
+                    {
+                      "name": "Duration",
+                      "expression": "`Duration`"
+                    },
+                    {
+                      "name": "TripID",
+                      "expression": "`TripID`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "TripID",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "Duration",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "Duration",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 0,
+            "width": 7,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "f1f0f608",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "d9e2a741",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
