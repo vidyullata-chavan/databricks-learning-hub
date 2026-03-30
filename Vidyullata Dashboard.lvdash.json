@@ -159,6 +159,11 @@
       ],
       "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
       "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "662e2659",
+      "displayName": "Untitled page 1",
+      "pageType": "PAGE_TYPE_CANVAS"
     }
   ],
   "uiSettings": {

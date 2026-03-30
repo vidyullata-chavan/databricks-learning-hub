@@ -1,0 +1,488 @@
+{
+  "datasets": [
+    {
+      "name": "dataset1",
+      "displayName": "customer",
+      "queryLines": [
+        "SELECT * FROM samples.tpcds_sf1.customer"
+      ]
+    },
+    {
+      "name": "307ca4d8",
+      "displayName": "Customer count by Nation / Country",
+      "queryLines": [
+        "SELECT \r\n",
+        "     INITCAP(n_name) AS Country, \r\n",
+        "     COUNT(*) AS CustomerCount\r\n",
+        "   FROM samples.tpch.customer\r\n",
+        "   JOIN samples.tpch.nation ON n_nationkey = c_nationkey\r\n",
+        "   GROUP BY Country"
+      ]
+    },
+    {
+      "name": "b3012088",
+      "displayName": "Customer count by Market Segment",
+      "queryLines": [
+        "SELECT \r\n",
+        "     c_mktsegment AS MarketSegment, \r\n",
+        "     COUNT(*) AS CustomerCount\r\n",
+        "   FROM samples.tpch.customer\r\n",
+        "   GROUP BY MarketSegment"
+      ]
+    },
+    {
+      "name": "36d30f7f",
+      "displayName": "Top account balances",
+      "queryLines": [
+        "SELECT \r\n",
+        "     c_name AS CustomerName, \r\n",
+        "     c_acctbal AS AccountBalance\r\n",
+        "   FROM samples.tpch.customer\r\n",
+        "   ORDER BY AccountBalance DESC\r\n",
+        "   LIMIT 10"
+      ]
+    },
+    {
+      "name": "4dd7e033",
+      "displayName": "Distribution of account balance",
+      "queryLines": [
+        "SELECT \r\n",
+        "     c_custkey AS CustomerKey,\r\n",
+        "     c_acctbal AS AccountBalance\r\n",
+        "   FROM samples.tpch.customer"
+      ]
+    },
+    {
+      "name": "b8ca3ab7",
+      "displayName": "Phone area code wise customer count (extract prefix)",
+      "queryLines": [
+        "SELECT \r\n",
+        "     SUBSTRING(c_phone, 1, 3) AS AreaCode, \r\n",
+        "     COUNT(*) AS CustomerCount\r\n",
+        "   FROM samples.tpch.customer\r\n",
+        "   GROUP BY AreaCode"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "page1",
+      "displayName": "Chart 1",
+      "layout": [
+        {
+          "widget": {
+            "name": "d21d66f3",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "307ca4d8",
+                  "fields": [
+                    {
+                      "name": "sum(CustomerCount)",
+                      "expression": "SUM(`CustomerCount`)"
+                    },
+                    {
+                      "name": "Country",
+                      "expression": "`Country`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Country",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(CustomerCount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "sum(CustomerCount)",
+                  "scale": {
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "scheme",
+                      "scheme": "greens"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 7
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "1c77a694",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "b7054f42",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "172dee58",
+      "displayName": "Chart 2",
+      "layout": [
+        {
+          "widget": {
+            "name": "dc6ed93e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b3012088",
+                  "fields": [
+                    {
+                      "name": "sum(CustomerCount)",
+                      "expression": "SUM(`CustomerCount`)"
+                    },
+                    {
+                      "name": "CustomerCount",
+                      "expression": "`CustomerCount`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(CustomerCount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "CustomerCount",
+                  "scale": {
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "scheme",
+                      "scheme": "magma"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "22d41e61",
+      "displayName": "Chart 3",
+      "layout": [
+        {
+          "widget": {
+            "name": "4652e2b1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "36d30f7f",
+                  "fields": [
+                    {
+                      "name": "sum(AccountBalance)",
+                      "expression": "SUM(`AccountBalance`)"
+                    },
+                    {
+                      "name": "CustomerName",
+                      "expression": "`CustomerName`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "sum(AccountBalance)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "CustomerName",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "sum(AccountBalance)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "d81b7a0d",
+      "displayName": "Chart 4",
+      "layout": [
+        {
+          "widget": {
+            "name": "4dbc1398",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4dd7e033",
+                  "fields": [
+                    {
+                      "name": "AccountBalance",
+                      "expression": "`AccountBalance`"
+                    },
+                    {
+                      "name": "sum(CustomerKey)",
+                      "expression": "SUM(`CustomerKey`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": false,
+                "showDescription": false
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "AccountBalance",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(CustomerKey)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "1c542784",
+      "displayName": "Chart 5",
+      "layout": [
+        {
+          "widget": {
+            "name": "9a006a91",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b8ca3ab7",
+                  "fields": [
+                    {
+                      "name": "AreaCode",
+                      "expression": "`AreaCode`"
+                    },
+                    {
+                      "name": "sum(CustomerCount)",
+                      "expression": "SUM(`CustomerCount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "AreaCode",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(CustomerCount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "AreaCode",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

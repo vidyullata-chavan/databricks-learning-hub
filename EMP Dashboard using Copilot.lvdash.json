@@ -1,0 +1,155 @@
+{
+  "datasets": [
+    {
+      "name": "8570365b",
+      "displayName": "Employees by Job Role",
+      "queryLines": [
+        "SELECT\n",
+        "  JOB,\n",
+        "  COUNT(*) as employee_count\n",
+        "FROM\n",
+        "  emp\n",
+        "GROUP BY\n",
+        "  JOB"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "87bb3465",
+      "displayName": "Bar Chart",
+      "layout": [
+        {
+          "widget": {
+            "name": "65041690",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8570365b",
+                  "fields": [
+                    {
+                      "name": "ENAME",
+                      "expression": "`ENAME`"
+                    },
+                    {
+                      "name": "SAL",
+                      "expression": "`SAL`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Top 5 Employees by Salary",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "ENAME",
+                  "displayName": "Employee Name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "SAL",
+                  "displayName": "Salary",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "22e9ee0a",
+      "displayName": "Pie Chart",
+      "layout": [
+        {
+          "widget": {
+            "name": "9e242f8a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8570365b",
+                  "fields": [
+                    {
+                      "name": "employee_count",
+                      "expression": "`employee_count`"
+                    },
+                    {
+                      "name": "JOB",
+                      "expression": "`JOB`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Employees by Job Role",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "employee_count",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Employee Count"
+                },
+                "color": {
+                  "fieldName": "JOB",
+                  "displayName": "Job Role",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 11,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

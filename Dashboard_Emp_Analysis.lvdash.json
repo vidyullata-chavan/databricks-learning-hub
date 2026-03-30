@@ -1,0 +1,420 @@
+{
+  "datasets": [
+    {
+      "name": "72e69edd",
+      "displayName": "Top Five Employees by Salary and Job Role",
+      "queryLines": [
+        "SELECT EMPNO, SAL, JOB FROM emp ORDER BY SAL DESC LIMIT 5;"
+      ]
+    },
+    {
+      "name": "5caab696",
+      "displayName": "Employee Annual Salary Overview",
+      "queryLines": [
+        "SELECT EMPNO, ENAME, SAL * 12 AS ANNSAL FROM emp;"
+      ]
+    },
+    {
+      "name": "6243ebd8",
+      "displayName": "Department Salary Statistics",
+      "queryLines": [
+        "SELECT DEPTNO, \r\n",
+        "       MAX(SAL) AS MAX_SAL, \r\n",
+        "       MIN(SAL) AS MIN_SAL, \r\n",
+        "       AVG(SAL) AS AVG_SAL\r\n",
+        "FROM emp\r\n",
+        "GROUP BY DEPTNO;"
+      ]
+    },
+    {
+      "name": "ce016e13",
+      "displayName": "Unique Job Titles from Employee Records",
+      "queryLines": [
+        "SELECT DISTINCT JOB FROM emp;"
+      ]
+    },
+    {
+      "name": "4ba32ac0",
+      "displayName": "Top Four Employee Salaries Overview",
+      "queryLines": [
+        "SELECT * FROM emp ORDER BY SAL DESC LIMIT 4;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "205ae941",
+      "displayName": "Chart 1",
+      "layout": [
+        {
+          "widget": {
+            "name": "top-five-employees-by-salary-job-role",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "72e69edd",
+                  "fields": [
+                    {
+                      "name": "EMPNO",
+                      "expression": "`EMPNO`"
+                    },
+                    {
+                      "name": "JOB",
+                      "expression": "`JOB`"
+                    },
+                    {
+                      "name": "avg(SAL)",
+                      "expression": "AVG(`SAL`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "Top Five Employees by Salary and Job Role"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "JOB",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "avg(SAL)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "EMPNO",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "a536eb4b",
+      "displayName": "Chart  2",
+      "layout": [
+        {
+          "widget": {
+            "name": "33839982",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5caab696",
+                  "fields": [
+                    {
+                      "name": "ANNSAL",
+                      "expression": "`ANNSAL`"
+                    },
+                    {
+                      "name": "sum(EMPNO)",
+                      "expression": "SUM(`EMPNO`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "ANNSAL",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(EMPNO)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "1a8ef984",
+      "displayName": "Chart 3",
+      "layout": [
+        {
+          "widget": {
+            "name": "f83d434e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "6243ebd8",
+                  "fields": [
+                    {
+                      "name": "DEPTNO",
+                      "expression": "`DEPTNO`"
+                    },
+                    {
+                      "name": "MIN_SAL",
+                      "expression": "`MIN_SAL`"
+                    },
+                    {
+                      "name": "MAX_SAL",
+                      "expression": "`MAX_SAL`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "combo",
+              "encodings": {
+                "x": {
+                  "fieldName": "DEPTNO",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "MIN_SAL"
+                      }
+                    ]
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "MAX_SAL"
+                      }
+                    ]
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 11,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "4432b977",
+      "displayName": "Chart 4",
+      "layout": [
+        {
+          "widget": {
+            "name": "4821344b",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ce016e13",
+                  "fields": [
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    },
+                    {
+                      "name": "JOB",
+                      "expression": "`JOB`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "count(*)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "JOB",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "2afaa35e",
+      "displayName": "Chart 5",
+      "layout": [
+        {
+          "widget": {
+            "name": "9147f9ef",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4ba32ac0",
+                  "fields": [
+                    {
+                      "name": "sum(DEPTNO)",
+                      "expression": "SUM(`DEPTNO`)"
+                    },
+                    {
+                      "name": "DEPTNO",
+                      "expression": "`DEPTNO`"
+                    },
+                    {
+                      "name": "avg(SAL)",
+                      "expression": "AVG(`SAL`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "DEPTNO",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "avg(SAL)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "sum(DEPTNO)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
