@@ -66,9 +66,9 @@
           },
           "position": {
             "x": 0,
-            "y": 0,
-            "width": 5,
-            "height": 5
+            "y": 8,
+            "width": 12,
+            "height": 13
           }
         },
         {
@@ -81,15 +81,15 @@
                   "datasetName": "0021b933",
                   "fields": [
                     {
-                      "name": "Duration",
-                      "expression": "`Duration`"
+                      "name": "count(TripID)",
+                      "expression": "COUNT(`TripID`)"
                     },
                     {
-                      "name": "TripID",
-                      "expression": "`TripID`"
+                      "name": "BikeID",
+                      "expression": "`BikeID`"
                     }
                   ],
-                  "disaggregated": true
+                  "disaggregated": false
                 }
               }
             ],
@@ -98,31 +98,35 @@
               "widgetType": "bar",
               "encodings": {
                 "x": {
-                  "fieldName": "TripID",
+                  "fieldName": "BikeID",
                   "scale": {
                     "type": "categorical"
                   }
                 },
                 "y": {
-                  "fieldName": "Duration",
+                  "fieldName": "count(TripID)",
                   "scale": {
-                    "type": "categorical"
+                    "type": "quantitative"
                   }
                 },
                 "color": {
-                  "fieldName": "Duration",
+                  "fieldName": "count(TripID)",
                   "scale": {
-                    "type": "categorical"
+                    "type": "quantitative",
+                    "colorRamp": {
+                      "mode": "scheme",
+                      "scheme": "viridis"
+                    }
                   }
                 }
               }
             }
           },
           "position": {
-            "x": 5,
+            "x": 0,
             "y": 0,
-            "width": 7,
-            "height": 6
+            "width": 12,
+            "height": 8
           }
         }
       ],
